@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block bb %}
+    <a href="{% url 'movies:create' %}"><h4>새로운것 추가하는 버튼입니다.</h4</a>
+    {% for movie in movies %}
+        <a href="{% url 'movies:detail' movie.id %}"><h4>{{movie.title}}</h4</a>
+        <img src="{{movie.poster_path}}"></img>
+    {% endfor %}  
+
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block bb %}
+    <a href="{% url 'movies:list' %}">목록</a>
+    <a href="{% url 'movies:delete' movies.id %}">삭제</a>
+    <a href="{% url 'movies:update' movies.id %}">수정</a>
+    <br>
+    {{movies.title}}<br>
+    {{movies.poster_path}}<br>
+    {{movies.overview}}<br>
+     <div class="card-body">
+    <form action = "{% url 'movies:score_new' movies.id %}" method="post">
+      {% csrf_token %}
+      {{score_form.content}}
+      {{score_form.score}}
+      <input type="submit"/>
+    </form>
+  
+   {% for score in movies.score_set.all %}
+      <p class = "card-text"> {{score.content}}</p>
+      <p class = "card-text"> {{score.score}}</p>
+      <a href="{% url 'movies:score_delete' movies.id score.id %}">삭제</a>
+   {% empty %}
+      <p class = "card-text">댓글이 없습니다.</p>
+   {% endfor %}
+  </div>
+
+   
+{% endblock %}

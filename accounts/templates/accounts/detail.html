@@ -1,5 +1,52 @@
 {% extends 'base.html' %}
 {% block bb %}
-<div class="pt-5 mt-5"></div>
-   <h1 class="pt-5 mt-5">{{user}} 님 안녕하세요</h1>
+<div class="container dohyeon">
+    <div class="row">
+        <div class="pt-5 mt-5">
+           <h1 class="pt-5 mt-5">{{user}} 님 안녕하세요</h1>
+           <h1>정복 달성도 {{complete}}%</h1>
+           <div class="progress">
+              <div class="progress-bar bg-success" role="progressbar" style="width: {{complete}}%" aria-valuenow="{{complete}}" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+        </div>
+    </div>
+    <hr>
+
+    
+    <div class="row">
+        <div class="col-6">
+            <h1 class='col-12'><i class="fas fa-film"></i> 나중에 볼 영화 목록</h1>
+            <div class="row">
+                {% for movie in movie_likes %}
+                <div class='col-2 mt-1'>
+                    <a href="{% url 'movies:detail' movie.id %}" class="text-decoration-none">
+                        <div class="card">
+                          <img src="{{movie.poster_path}}" class="card-img-top" alt="...">
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        
+        <div class="col-6">
+            <h1 class='col-12'><i class="fas fa-film"></i> 정복 영화 목록</h1>
+            <div class="row">
+                {% for movie in movie_watched %}
+                    <div class='col-2 mt-1'>
+                        <a href="{% url 'movies:detail' movie.id %}" class="text-decoration-none">
+                            <div class="card ">
+                                <img src="{{movie.poster_path}}" class="card-img-top" alt="...">
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+    
+    
 {% endblock %}

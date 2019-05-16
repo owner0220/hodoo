@@ -6,6 +6,7 @@ from django.contrib.auth import login as log_in
 from django.contrib.auth import logout as log_out
 from django.contrib.auth.forms import AuthenticationForm,PasswordChangeForm
 from django.contrib.auth.decorators import permission_required, login_required
+from Movies.models import Movie
 
 
 
@@ -22,8 +23,15 @@ def list(request):
 
 @login_required
 def detail(request):
-    user = request.user
-    return render(request,"accounts/detail.html",{"user":user})
+    movie_likes = (request.user.like_movie_set.all())
+    movie_watched = (request.user.watched.all())
+    total = movie_watched.count() + movie_likes.count()
+    complete = int(movie_watched.count() / total * 100)
+    
+    print(movie_watched.count(),movie_likes.count())
+    # user = request.user
+    ctx = {"movie_likes":movie_likes,"movie_watched":movie_watched,"complete":complete}
+    return render(request,"accounts/detail.html",ctx)
 
 
 

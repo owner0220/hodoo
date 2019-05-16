@@ -9,10 +9,14 @@ from django.contrib.auth.decorators import permission_required, login_required
 
 
 
+
 # Create your views here.
 @permission_required('accounts')
 def list(request):
-    return HttpResponse("리스트페이지 만들자")
+    user = get_user_model()
+    users = user.objects.all()
+    
+    return render(request,"accounts/list.html",{"users":users})
 
 
 
@@ -23,7 +27,6 @@ def detail(request):
 
 
 
-@permission_required('accounts')
 def create(request):
     if request.method=="POST":
         form = CustomUserForm(request.POST)
@@ -36,8 +39,11 @@ def create(request):
 
 
 @permission_required('accounts')
-def delete(request):
-    return HttpResponse("딜리트 페이지 만들자")
+def user_delete(request,id):
+    user = get_user_model()
+    person = get_object_or_404(user,id=id)
+    person.delete()
+    return redirect("accounts:list")
 
 @login_required
 def update(request):
@@ -45,7 +51,7 @@ def update(request):
         form = PasswordChangeForm(user=request.user,data=request.POST)
         if form.is_valid():
             form.save()
-            return redirect("movies:list")   
+            return redirect("movies:main")   
     else:
         form = PasswordChangeForm(user=request.user)
     return render(request,"accounts/form.html",{"form":form})
@@ -54,10 +60,13 @@ def update(request):
 @login_required    
 def logout(request):
     log_out(request)
-    return redirect("movies:list")
+    return redirect("movies:main")
     
 def login(request):
     if request.method=="POST":
+        print(request.POST)
+        # print(request.POST.get(act))  
+        # raise("")
         form = AuthenticationForm(request,data=request.POST)
         if form.is_valid():
             username=form.cleaned_data.get('username')
@@ -65,7 +74,24 @@ def login(request):
             user = authenticate(username=username,password=password)
             if user is not None:
                 log_in(request,user)
-                return redirect("movies:list")
+                return redirect("movies:main")
     else:
         form = AuthenticationForm()
     return render(request,"accounts/form.html",{"form":form})
+    # return render(request,"accounts/login_form.html",{"form":form})
+# def login(request):
+#     if request.method=="POST":
+#         form = AuthenticationForm(request,data=request.POST)
+#         if form.is_valid():
+#             username=form.cleaned_data.get('username')
+#             password=form.cleaned_data.get('password')
+#             user = authenticate(username=username,password=password)
+#             if user is not None:
+#                 log_in(request,user)
+#                 return redirect("movies:list")
+#     else:
+#         form = AuthenticationForm()
+#     return render(request,"accounts/form.html",{"form":form})
+    
+    
+    

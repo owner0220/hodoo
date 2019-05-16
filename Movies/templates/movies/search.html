@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block bb %}
+
+
+{% if search %}
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class='container'>
+
+        <h1>| ' {{ q }}'가  포함된검색 결과</h1>
+        <button type="button" class="btn btn-secondary" ><a href = "{% url 'movies:main' %}" class='text-dark text-decoration-none'>뒤로 </a></button>
+        <div class="row">
+            {% for sc in search %}
+            <div class='col-sm-6 mt-4 col-md-3 px-3'>
+            <a href="{% url 'movies:detail' sc.id %}" class="text-decoration-none">
+                <div class="card" style="height: 29rem;">
+                  <div class="image card-img-top w-100 h-100" style="background: #ffffff url('{{sc.poster_path}}') no-repeat center center; background-size:cover;">
+                  <!--<img src="{{movie.poster_path}}" class="card-img-top" alt="...">-->
+                  </div>
+                  <div class="card-body text-dark p-2">
+                    <h5 class="card-title text-truncate " style="font-weight:bold">
+                        {{sc.title}}
+                    </h5>
+                    <p class="card-text text-truncate">{{sc.overview}}</p>
+                  </div>
+                </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+ 
+       
+
+{% else %}
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="container">
+    <h1>| ' {{ q }}'가  포함된 검색결과가 없습니다.</h1>
+    <button type="button" class="btn btn-secondary" ><a href = "{% url 'movies:main' %}" class='text-dark text-decoration-none'>뒤로 </a></button>
+            
+    </div>
+    
+    
+{% endif %}
+
+
+
+{% endblock %}
+
+
+
+
+
+

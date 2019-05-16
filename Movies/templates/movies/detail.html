@@ -1,28 +1,180 @@
 {% extends 'base.html' %}
 {% block bb %}
-    <a href="{% url 'movies:list' %}">목록</a>
-    <a href="{% url 'movies:delete' movies.id %}">삭제</a>
-    <a href="{% url 'movies:update' movies.id %}">수정</a>
-    <br>
-    {{movies.title}}<br>
-    {{movies.poster_path}}<br>
-    {{movies.overview}}<br>
-     <div class="card-body">
-    <form action = "{% url 'movies:score_new' movies.id %}" method="post">
-      {% csrf_token %}
-      {{score_form.content}}
-      {{score_form.score}}
-      <input type="submit"/>
-    </form>
-  
-   {% for score in movies.score_set.all %}
-      <p class = "card-text"> {{score.content}}</p>
-      <p class = "card-text"> {{score.score}}</p>
-      <a href="{% url 'movies:score_delete' movies.id score.id %}">삭제</a>
-   {% empty %}
-      <p class = "card-text">댓글이 없습니다.</p>
-   {% endfor %}
-  </div>
+<style type="text/css">
+    .main{
+      background-image: url('{{movie.poster_back}}');
+      background-size: cover;
+      background-position: center 30%;
+      width: auto;
+      height: 500px;
+      border: 2px solid;
+      resize: both;
+      border-color: white;
+    }
+    .main_shadow{
+      background-color: rgba(255,255,255,0.2);
+    }
+
+</style>
+<div class="main">
+  <div class="main_shadow w-100 h-100"></div>
+</div>
+<div class="container" style="position:absolute;top:7%;">
+ 
+    
+</div>
+
+
+
+
+
+<div class="mt-5 pt-5 dohyeon">
+    <div class='container pt-5'>
+        <div class='row movie detail-item'>
+            <div class='offset-2 col-8 offset-sm-0 col-sm-4 col md-4 col-lg-4 col-xl-4'>
+                <img src="{{movie.poster_path}}" alt="사진이 없습니다.">
+            </div>
+            
+            <div class='col-12 col-sm-8 col-md-8 col-lg-8 col-xl-8 movie-item-text'>
+                <h1 class='my-5'>{{movie.title}}</h1>
+                <h4 class='my-5'>{{movie.overview}}</h4>
+                <span class="badge badge-pill badge-warning">★ {{score_avg}}</span>
+
+            <hr>
+                <div class="card-body">
+                 <!--좋아요 버튼 시작 -->
+                {% if user in movie.likes.all %}
+                <button type="button" class="btn btn-primary btn-lg">
+                    <div class = 'contentActionStatusImage css-mvuu8o eoa1i662'>
+                        <span src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iMjRweCIgaGVpZ2h0PSIyNHB4IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8IS0tIEdlbmVyYXRvcjogc2tldGNodG9vbCA1MC4yICg1NTA0NykgLSBodHRwOi8vd3d3LmJvaGVtaWFuY29kaW5nLmNvbS9za2V0Y2ggLS0+CiAgICA8dGl0bGU+NjMwMjYxNEEtQzhBMy00MkMwLTlDQzctQTBEQzNDOEM1NTVDPC90aXRsZT4KICAgIDxkZXNjPkNyZWF0ZWQgd2l0aCBza2V0Y2h0b29sLjwvZGVzYz4KICAgIDxkZWZzPjwvZGVmcz4KICAgIDxnIGlkPSJJY29ucy0mYW1wOy1Bc3NldHMiIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPgogICAgICAgIDxnIGlkPSJJY29uLS8tSWNBZGRXaGl0ZSIgZmlsbD0iI0ZGRkZGRiI+CiAgICAgICAgICAgIDxyZWN0IGlkPSJSZWN0YW5nbGUtMyIgeD0iMTEiIHk9IjQuNSIgd2lkdGg9IjIiIGhlaWdodD0iMTUiIHJ4PSIxIj48L3JlY3Q+CiAgICAgICAgICAgIDxyZWN0IGlkPSJSZWN0YW5nbGUtMy1Db3B5IiB4PSI0LjUiIHk9IjExIiB3aWR0aD0iMTUiIGhlaWdodD0iMiIgcng9IjEiPjwvcmVjdD4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPg==" class='css-1eilmze eoa1i663'>
+                            <div class='css-0 eoa1i664'>
+                                <a href="{% url 'movies:like' movie.id %}"><i class="fas fa-heart" style="color:red">나중에 볼 영화 입니다.</i></a>
+                            </div>
+                        </span>
+                    </div>
+                </button>
+                {% else %}
+                <button type="button" class="btn btn-primary btn-lg">
+                    <div class = 'contentActionStatusImage css-mvuu8o eoa1i662'>
+                        <span src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iMjRweCIgaGVpZ2h0PSIyNHB4IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8IS0tIEdlbmVyYXRvcjogc2tldGNodG9vbCA1MC4yICg1NTA0NykgLSBodHRwOi8vd3d3LmJvaGVtaWFuY29kaW5nLmNvbS9za2V0Y2ggLS0+CiAgICA8dGl0bGU+NjMwMjYxNEEtQzhBMy00MkMwLTlDQzctQTBEQzNDOEM1NTVDPC90aXRsZT4KICAgIDxkZXNjPkNyZWF0ZWQgd2l0aCBza2V0Y2h0b29sLjwvZGVzYz4KICAgIDxkZWZzPjwvZGVmcz4KICAgIDxnIGlkPSJJY29ucy0mYW1wOy1Bc3NldHMiIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPgogICAgICAgIDxnIGlkPSJJY29uLS8tSWNBZGRXaGl0ZSIgZmlsbD0iI0ZGRkZGRiI+CiAgICAgICAgICAgIDxyZWN0IGlkPSJSZWN0YW5nbGUtMyIgeD0iMTEiIHk9IjQuNSIgd2lkdGg9IjIiIGhlaWdodD0iMTUiIHJ4PSIxIj48L3JlY3Q+CiAgICAgICAgICAgIDxyZWN0IGlkPSJSZWN0YW5nbGUtMy1Db3B5IiB4PSI0LjUiIHk9IjExIiB3aWR0aD0iMTUiIGhlaWdodD0iMiIgcng9IjEiPjwvcmVjdD4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPg==" class='css-1eilmze eoa1i663'>
+                            <div class='css-0 eoa1i664'>
+                                <a href="{% url 'movies:like' movie.id %}"><i class="fas fa-heart" style="color:white">보고 싶어요!!</i></a>
+                            </div>
+                        </span>
+                    </div>
+                </button>                
+                {% endif %}
+
+                
+                {% if user in movie.watch.all %}
+                <button type="button" class="btn btn-primary btn-lg">
+                    <div class = 'contentActionStatusImage css-mvuu8o eoa1i662'>
+                        <span src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iMjRweCIgaGVpZ2h0PSIyNHB4IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8IS0tIEdlbmVyYXRvcjogc2tldGNodG9vbCA1MC4yICg1NTA0NykgLSBodHRwOi8vd3d3LmJvaGVtaWFuY29kaW5nLmNvbS9za2V0Y2ggLS0+CiAgICA8dGl0bGU+NjMwMjYxNEEtQzhBMy00MkMwLTlDQzctQTBEQzNDOEM1NTVDPC90aXRsZT4KICAgIDxkZXNjPkNyZWF0ZWQgd2l0aCBza2V0Y2h0b29sLjwvZGVzYz4KICAgIDxkZWZzPjwvZGVmcz4KICAgIDxnIGlkPSJJY29ucy0mYW1wOy1Bc3NldHMiIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPgogICAgICAgIDxnIGlkPSJJY29uLS8tSWNBZGRXaGl0ZSIgZmlsbD0iI0ZGRkZGRiI+CiAgICAgICAgICAgIDxyZWN0IGlkPSJSZWN0YW5nbGUtMyIgeD0iMTEiIHk9IjQuNSIgd2lkdGg9IjIiIGhlaWdodD0iMTUiIHJ4PSIxIj48L3JlY3Q+CiAgICAgICAgICAgIDxyZWN0IGlkPSJSZWN0YW5nbGUtMy1Db3B5IiB4PSI0LjUiIHk9IjExIiB3aWR0aD0iMTUiIGhlaWdodD0iMiIgcng9IjEiPjwvcmVjdD4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPg==" class='css-1eilmze eoa1i663'>
+                            <div class='css-0 eoa1i664'>
+                                <a href="{% url 'movies:watched' movie.id %}"><i class="fas fa-heart" style="color:red">이미 시청하신 영화입니다.</i></a>
+                            </div>
+                        </span>
+                    </div>
+                </button>
+                {% else %}
+                <button type="button" class="btn btn-primary btn-lg">
+                    <div class = 'contentActionStatusImage css-mvuu8o eoa1i662'>
+                        <span src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iMjRweCIgaGVpZ2h0PSIyNHB4IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8IS0tIEdlbmVyYXRvcjogc2tldGNodG9vbCA1MC4yICg1NTA0NykgLSBodHRwOi8vd3d3LmJvaGVtaWFuY29kaW5nLmNvbS9za2V0Y2ggLS0+CiAgICA8dGl0bGU+NjMwMjYxNEEtQzhBMy00MkMwLTlDQzctQTBEQzNDOEM1NTVDPC90aXRsZT4KICAgIDxkZXNjPkNyZWF0ZWQgd2l0aCBza2V0Y2h0b29sLjwvZGVzYz4KICAgIDxkZWZzPjwvZGVmcz4KICAgIDxnIGlkPSJJY29ucy0mYW1wOy1Bc3NldHMiIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPgogICAgICAgIDxnIGlkPSJJY29uLS8tSWNBZGRXaGl0ZSIgZmlsbD0iI0ZGRkZGRiI+CiAgICAgICAgICAgIDxyZWN0IGlkPSJSZWN0YW5nbGUtMyIgeD0iMTEiIHk9IjQuNSIgd2lkdGg9IjIiIGhlaWdodD0iMTUiIHJ4PSIxIj48L3JlY3Q+CiAgICAgICAgICAgIDxyZWN0IGlkPSJSZWN0YW5nbGUtMy1Db3B5IiB4PSI0LjUiIHk9IjExIiB3aWR0aD0iMTUiIGhlaWdodD0iMiIgcng9IjEiPjwvcmVjdD4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPg==" class='css-1eilmze eoa1i663'>
+                            <div class='css-0 eoa1i664'>
+                                <a href="{% url 'movies:watched' movie.id %}"><i class="fas fa-heart" style="color:white">시청 완료!</i></a>
+                            </div>
+                        </span>
+                    </div>
+                </button>                
+                {% endif %}
+                </div>
+            
+        </div>
+   
+        <hr>
+        
+        
+        <div class='col-md-6'>
+            <h3>| 댓글</h3>
+        
+        <form action = "{% url 'movies:score_new' movie.id %}" method="post">
+          {% csrf_token %}
+          <div class='form-group form-comment'>
+              <div>
+                  <div class='comment-name-tag d-inline-flex'>
+                      <h2><i class="fas fa-user">{{user}} |</i></h2>
+                  </div>
+                  <div class='d-inline-flex'>
+                        <fieldset class="rating">
+                            <input type="radio" id="star5" name="score" value=5 /><label for="star5" title="Rocks!">5 stars</label>
+                            <input type="radio" id="star4" name="score" value=4 /><label for="star4" title="Pretty good">4 stars</label>
+                            <input type="radio" id="star3" name="score" value=3 /><label for="star3" title="Meh">3 stars</label>
+                            <input type="radio" id="star2" name="score" value=2 /><label for="star2" title="Kinda bad">2 stars</label>
+                            <input type="radio" id="star1" name="score" value=1 /><label for="star1" title="Sucks big time">1 star</label>
+                            <input type="radio"  name="score" value=0 checked/>
+                        </fieldset>
+                    </div>
+                </div>
+                
+                  <div class='comment-text-submit'>
+                      <textarea name='content' cols='40' row='1' class='noresize form-control comment-textarea' placeholder='댓글을 작성해 주세요' required id= 'id_content'></textarea>
+                      <input type="submit" value='작성' class='btn btn-primary'>
+                  </div>
+          </div>
+            <div class="card-body">
+          
+           {% for score in movie.score_set.all %}
+       
+                <h5>
+                    <p class = "card-text"> 
+                      <i class="fas fa-user">{{score.current_user}}</i> : {{score.content}}
+                      <a href="{% url 'movies:score_update' movie.id score.id %}"><span class="badge badge-primary">수정</span></a>
+                      <a href="{% url 'movies:score_delete' movie.id score.id %}"><span class="badge badge-danger">삭제</span></a>
+                    </p>
+                </h5>
+                  
+         
+              {% if score.score == 0 %}
+                  <p class = "card-text"> 점수 없음</p>
+              {% elif score.score == 1 %}
+                  <p class = "card-text"> ★</p>
+              {% elif score.score == 2 %}
+                  <p class = "card-text"> ★★</p>
+              {% elif score.score == 3 %}
+                  <p class = "card-text"> ★★★</p>
+              {% elif score.score == 4 %}
+                  <p class = "card-text"> ★★★★</p>
+              {% elif score.score == 5 %}
+                  <p class = "card-text"> ★★★★★</p>
+              {% endif %}
+              
+              
+              
+              <hr>
+           {% empty %}
+              <p class = "card-text">댓글이 없습니다.</p>
+           {% endfor %}
+          </div>
+        </form>
+      </div>
+      <div class='col-md-6 offset'>
+            <h3>| 예매하기</h3>
+        <a href="http://www.cgv.co.kr/search/?query={{movie.title}}"><button type="button" class="btn btn-primary">CGV에서 예매하기</button></a><br><br>
+        <button type="button" class="btn btn-secondary">롯데시네마 에서 예매하기</button><br><br>
+        <button type="button" class="btn btn-success">메가박스에서 예매하기</button><br><br>
+        <button type="button" class="btn btn-danger">네이버에서 예매하기</button><br><br>
+        
+        <a href="https://www.youtube.com/results?search_query={{movie.title}}"><button type="button" class="btn btn-warning">YouTube</button></a>      <br><br>
+            
+      </div>
+      </div>
+      </div>
+</div>
+
+
+
+
+
 
    
 {% endblock %}

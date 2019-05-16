@@ -239,7 +239,6 @@
         width: 100%;
         margin: 0;
         padding: 0;
-        
         }
     
         .searchbar{
@@ -265,7 +264,7 @@
         .searchbar:hover > .search_input{
         padding: 0 10px;
         width: 450px;
-        caret-color:white;
+        caret-color:red;
         transition: width 0.4s linear;
         }
     
@@ -303,62 +302,45 @@
 <br>
 <br>
 <br>
-
-<div class='container'>
-    <h1><i class="fas fa-film"></i> 영화 목록</h1>
-    
-    
-    
-    <div class="row">
-        {% for movie in movies %}
-        <div class='col-sm-6 mt-4 col-md-3 px-3'>
-        <a href="{% url 'movies:detail' movie.id %}" class="text-decoration-none">
-            <div class="card" style="height: 29rem;">
-              <div class="image card-img-top w-100 h-100" style="background: #ffffff url('{{movie.poster_path}}') no-repeat center center; background-size:cover;">
-              <!--<img src="{{movie.poster_path}}" class="card-img-top" alt="...">-->
-              </div>
-              <div class="card-body text-dark p-2">
-                <h5 class="card-title text-truncate " style="font-weight:bold">
-                    {{movie.title}}
-                </h5>
-                <p class="card-text text-truncate">{{movie.overview}}</p>
-                
-              </div>
-            </div>
-            </a>
-        </div>
-        {% endfor %}
-    </div>
-    
-      <div class="row d-flex justify-content-center my-3">
-        <nav aria-label="Page navigation example">
-          <form class="pagination justify-content-center">
-            <li class="page-item"><input type="submit" name="page" class="page-link" value={{pages.0}}></li>
-            <li class="page-item"><input type="submit" name="page" class="page-link" value={{pages.1}}></li>
-            <li class="page-item"><input type="submit" name="page" class="page-link" value={{pages.2}}></li>
-          </form>
-        </nav>
-      </div>
-    
-    
-    
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="hub center">
+  <div class="jello-horizontal mb-5">
+      <div class="text-black d-inline-block">H</div>
+        <div class="d-inline-block"><a href={%url 'game:home'%} class="text-dark" style="text-decoration:none;">oDo</a></div>
+      <div class="text-black d-inline-block">O</div>
+  </div>
 </div>
+<br>
+<br>
+<br>
+<br>
+
+
+
+    <div class="container h-100">
+      <div class="d-flex justify-content-center h-100">
+        <form action="{%url 'movies:search' %}" method="get">
+          <div class="searchbar">
+            <input class="search_input" type="text" name="q" value="{{ q }}" placeholder="Search...">
+            <button type="submit" class="icon-search icon-large"><i class="fas fa-search"></i></button>
+            <!--<input type="submit" value="검색"><a href="#" class="search_icon"><i class="fas fa-search"></i></a>-->
+          </div>
+        </form>
+
+
+      </div>
+    </div>
+    <br>
+<br>
+<br>
+<br>
+<hr>
 {% endblock %}
 
 

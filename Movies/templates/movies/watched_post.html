@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block bb %}
+
+<div class='container pt-5 mt-5'>
+    <h1 class='mt-5'><i class="fas fa-film"></i> 본 영화 목록</h1>
+    <div class="row">
+        {% for movie in movies %}
+        <div class='col-4 mt-5'>
+        <a href="{% url 'movies:detail' movie.id %}" class="text-decoration-none">
+            <div class="card " style="width: 20rem;" >
+              <img src="{{movie.poster_path}}" class="card-img-top" alt="...">
+              <div class="card-body text-dark ">
+                <h5 class="card-title" style="font-weight:bold">
+                    {{movie.title}}
+                </h5>
+                <p class="card-text text-truncate">{{movie.overview}}</p>
+                
+              </div>
+            </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+    
+</div>
+{% endblock %}
+
+
+
+
+

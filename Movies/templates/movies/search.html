@@ -38,15 +38,15 @@
        
 
 {% else %}
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <div class="container">
-    <h1>| ' {{ q }}'가  포함된 검색결과가 없습니다.</h1>
+    <!--<br>-->
+    <!--<br>-->
+    <!--<br>-->
+    <!--<br>-->
+    <!--<br>-->
+    <!--<br>-->
+    <!--<br>-->
+    <div class="container mt-5 pt-5">
+    <h1 class="mt-5">| ' {{ q }}'가  포함된 검색결과가 없습니다.</h1>
     <button type="button" class="btn btn-secondary" ><a href = "{% url 'movies:main' %}" class='text-dark text-decoration-none'>뒤로 </a></button>
             
     </div>

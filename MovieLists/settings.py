@@ -128,6 +128,10 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 AUTH_USER_MODEL = "accounts.customuser"
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'static/game'),
+    os.path.join(BASE_DIR, 'static/game/assets'),
+    os.path.join(BASE_DIR, 'static/game/dist'),
+    os.path.join(BASE_DIR, 'static/game/src'),
 )
 
 REST_FRAMEWORK = {

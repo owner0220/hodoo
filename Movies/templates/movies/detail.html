@@ -14,6 +14,10 @@
     .main_shadow{
       background-color: rgba(255,255,255,0.2);
     }
+    
+    .op{
+        opacity:0.6;
+    }
 
 </style>
 <div class="main">
@@ -159,17 +163,29 @@
       </div>
       <div class='col-md-6 offset'>
             <h3>| 예매하기</h3>
-        <a href="http://www.cgv.co.kr/search/?query={{movie.title}}"><button type="button" class="btn btn-primary">CGV에서 예매하기</button></a><br><br>
-        <button type="button" class="btn btn-secondary disabled">롯데시네마 에서 예매하기</button><br><br>
-        <button type="button" class="btn btn-success disabled">메가박스에서 예매하기</button><br><br>
-        <button type="button" class="btn btn-danger disabled">네이버에서 예매하기</button><br><br>
+        <a href="http://www.cgv.co.kr/search/?query={{movie.title}}"><H2><span class="badge badge-pill badge-danger">CGV</span></H2></a><br>
+        <H2><span class="badge badge-pill badge-secondary op"aria-disabled="true">LOTTE CINEMA</span></H2><br>
+        <H2><span class="badge badge-pill badge-secondary op"aria-disabled="true">MEGA BOX</span></H2><br>
+        <H2><span class="badge badge-pill badge-secondary op"aria-disabled="true">NAVER</span></H2><br>
+
+
         
-        <a href="https://www.youtube.com/results?search_query={{movie.title}}"><button type="button" class="btn btn-warning">YouTube</button></a>      <br><br>
-            
+            <h3>| 동영상</h3>
+        <a href="https://www.youtube.com/results?search_query={{movie.title}}"><H2><span class="badge badge-pill badge-danger">YOUTUBE</span></H2></a><br>
       </div>
       </div>
       </div>
 </div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
 
 
 

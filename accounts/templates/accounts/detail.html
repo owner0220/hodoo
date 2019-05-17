@@ -4,7 +4,11 @@
     <div class="row">
         <div class="pt-5 mt-5">
            <h1 class="pt-5 mt-5">{{user}} 님 안녕하세요</h1>
+           {% if total == 0 %}
+           <h1>정복을 위해 당신의 영화를 등록해주세요!!</h1>
+           {% else %}
            <h1>정복 달성도 {{complete}}%</h1>
+           {% endif %}
            <div class="progress">
               <div class="progress-bar bg-success" role="progressbar" style="width: {{complete}}%" aria-valuenow="{{complete}}" aria-valuemin="0" aria-valuemax="100"></div>
             </div>

@@ -26,7 +26,10 @@ def detail(request):
     movie_likes = (request.user.like_movie_set.all())
     movie_watched = (request.user.watched.all())
     total = movie_watched.count() + movie_likes.count()
-    complete = int(movie_watched.count() / total * 100)
+    complete = 100
+    if total != 0:
+        complete = int(movie_watched.count() / total * 100)
+        
     
     print(movie_watched.count(),movie_likes.count())
     # user = request.user

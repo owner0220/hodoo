@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'django_seed',
     'game',
     'rest_framework',
+    'rest_framework_swagger',
+    
 ]
 
 MIDDLEWARE = [

@@ -2,15 +2,7 @@
 {% load static %}
 {% block bb %}
     <div class="dohyeon" style="margin-top:100px;">
-        <div class="row d-flex justify-content-center">
-          <nav aria-label="Page navigation example">
-            <form class="pagination justify-content-center">
-              <li class="page-item"><input type="submit" name="day" class="page-link" value={{days.0}}></li>
-              <li class="page-item"><input type="submit" name="day" class="page-link" value={{days.1}}></li>
-              <li class="page-item"><input type="submit" name="day" class="page-link" value={{days.2}}></li>
-            </form>
-          </nav>
-        </div>
+
         <div class="container" >
                 {% for k,v in items.items %}
                 
@@ -48,6 +40,16 @@
             <hr>
                 {% endfor %}
         </div>
+        <div class="row d-flex justify-content-center">
+          <nav aria-label="Page navigation example">
+            <form class="pagination justify-content-center">
+              <li class="page-item"><input type="submit" name="day" class="page-link" value={{days.0}}></li>
+              <li class="page-item"><input type="submit" name="day" class="page-link" value={{days.1}}></li>
+              <li class="page-item"><input type="submit" name="day" class="page-link" value={{days.2}}></li>
+            </form>
+          </nav>
+        </div>
+        
     </div>
     <br>
     <br>

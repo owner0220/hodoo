@@ -6,7 +6,7 @@
   - 로그인, 영화 등록, 댓글
   - 최신 영화정보 크롤링, 게임(이스터에그)
 - 담당 역할
-  - Bootstrap 기본 UI 세팅
+  - Bootstrap 기본 UI 세팅, 크롤링, 게임 (외부 라이브러리 적용)
   - 백엔드, 모델 구성, API활용 DB 세팅&관리, RESTful API
 
 
@@ -131,6 +131,7 @@ Django 2.1.8
 ![hodoo-home](./hodoo-movie_detail.png)
 
 - **개봉예정 영화 :** /preticket
+  - 특정 사이트 개봉 예정 영화 정보 크롤링
 
 ![hodoo-home](./hodoo-preticket.png)
 

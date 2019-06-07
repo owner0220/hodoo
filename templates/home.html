@@ -1,0 +1,338 @@
+{% load static %}
+<html lang="en" class="full-height">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HoDoO</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Barlow+Condensed" rel="stylesheet">
+  <style>
+  .heartbeat {
+	-webkit-animation: heartbeat 1.5s ease-in-out infinite both;
+	        animation: heartbeat 1.5s ease-in-out infinite both;
+}
+  .bcfont{
+    font-family: 'Barlow Condensed', sans-serif;
+  }
+  
+  .hub {
+  display: block;
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 5vw;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  float:left;
+}
+
+.hub div:nth-child(2) {
+  background: #FF9900;
+  color: #000000;
+  border-radius: 1vw;
+  padding: 0 1vw 1vw 1vw;
+  display: inline-block;
+}
+  
+  body {
+    margin:0;
+    padding:0;
+    height:100%;
+    width:100%;
+    background-color:black;
+  }
+  html {
+    margin:0;
+    padding:0;
+    height:100%;
+    width:100%;
+  }
+  .image{
+    width:100%;
+    height:100%;
+    background-image: url('https://images.unsplash.com/photo-1460881680858-30d872d5b530?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80');
+    background-size: cover;
+    background-repeat:no-repeat;
+    background-position:center;
+    overflow:hidden;
+  }
+  
+  .a:not(.ini){
+    width:100%;
+    height:100%;
+    opacity: 0.7;
+    margin:0;
+    padding:0;
+  }
+  
+  .center{
+    position:absolute;
+    left:48%;
+    top:35%;
+    transform: translate(-45%, -50%);
+  }
+  
+@-webkit-keyframes blink-1{0%,50%,100%{opacity:1}25%,75%{opacity:0}}@keyframes blink-1{0%,50%,100%{opacity:1}25%,75%{opacity:0}}
+.blink-1{-webkit-animation:blink-1 .6s both;animation:blink-1 .6s both}
+
+.jello-horizontal {
+	-webkit-animation: jello-horizontal 0.9s both;
+	        animation: jello-horizontal 0.9s both;
+}
+
+@-webkit-keyframes jello-horizontal {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+  30% {
+    -webkit-transform: scale3d(1.25, 0.75, 1);
+            transform: scale3d(1.25, 0.75, 1);
+  }
+  40% {
+    -webkit-transform: scale3d(0.75, 1.25, 1);
+            transform: scale3d(0.75, 1.25, 1);
+  }
+  50% {
+    -webkit-transform: scale3d(1.15, 0.85, 1);
+            transform: scale3d(1.15, 0.85, 1);
+  }
+  65% {
+    -webkit-transform: scale3d(0.95, 1.05, 1);
+            transform: scale3d(0.95, 1.05, 1);
+  }
+  75% {
+    -webkit-transform: scale3d(1.05, 0.95, 1);
+            transform: scale3d(1.05, 0.95, 1);
+  }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+}
+@keyframes jello-horizontal {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+  30% {
+    -webkit-transform: scale3d(1.25, 0.75, 1);
+            transform: scale3d(1.25, 0.75, 1);
+  }
+  40% {
+    -webkit-transform: scale3d(0.75, 1.25, 1);
+            transform: scale3d(0.75, 1.25, 1);
+  }
+  50% {
+    -webkit-transform: scale3d(1.15, 0.85, 1);
+            transform: scale3d(1.15, 0.85, 1);
+  }
+  65% {
+    -webkit-transform: scale3d(0.95, 1.05, 1);
+            transform: scale3d(0.95, 1.05, 1);
+  }
+  75% {
+    -webkit-transform: scale3d(1.05, 0.95, 1);
+            transform: scale3d(1.05, 0.95, 1);
+  }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+}
+
+
+
+@-webkit-keyframes heartbeat {
+  from {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    -webkit-transform-origin: center center;
+            transform-origin: center center;
+    -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out;
+  }
+  10% {
+    -webkit-transform: scale(0.91);
+            transform: scale(0.91);
+    -webkit-animation-timing-function: ease-in;
+            animation-timing-function: ease-in;
+  }
+  17% {
+    -webkit-transform: scale(0.98);
+            transform: scale(0.98);
+    -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out;
+  }
+  33% {
+    -webkit-transform: scale(0.87);
+            transform: scale(0.87);
+    -webkit-animation-timing-function: ease-in;
+            animation-timing-function: ease-in;
+  }
+  45% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out;
+  }
+}
+@keyframes heartbeat {
+  from {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    -webkit-transform-origin: center center;
+            transform-origin: center center;
+    -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out;
+  }
+  10% {
+    -webkit-transform: scale(0.91);
+            transform: scale(0.91);
+    -webkit-animation-timing-function: ease-in;
+            animation-timing-function: ease-in;
+  }
+  17% {
+    -webkit-transform: scale(0.98);
+            transform: scale(0.98);
+    -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out;
+  }
+  33% {
+    -webkit-transform: scale(0.87);
+            transform: scale(0.87);
+    -webkit-animation-timing-function: ease-in;
+            animation-timing-function: ease-in;
+  }
+  45% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out;
+  }
+}
+
+
+.left_name{
+  position:absolute;
+  top:5%;
+  left:18%;
+  transform: translate(-50%, -50%);
+}
+.left2_name{
+  position:absolute;
+  top:5%;
+  left:37%;
+  transform: translate(-50%, -50%);
+}
+.left3_name{
+  position:absolute;
+  top:5%;
+  left:57%;
+  transform: translate(-50%, -50%);
+}
+.left4_name{
+  position:absolute;
+  top:5%;
+  left:79%;
+  transform: translate(-50%, -50%);
+}
+.bt_center_title{
+  position:absolute;
+  top:70%;
+  left:50%;
+  font-size:6rem;
+  transform: translate(-50%, -50%);
+}
+.bt_center_sub{
+  position:absolute;
+  top:87%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.c_t{
+  font-size:1rem;
+}
+.c_sub{
+  font-size:2rem;
+  
+}
+.t_t{
+  font-size:1rem;
+}
+.t2_t{
+  font-size:0.8rem;
+}
+
+  </style>  
+
+  </head>
+  
+    <body class="image">
+        <header class="a " style="background-color:black;">
+            <!--<img class="blink-1" src="{% static 'movies/white_logo.png' %}">-->
+            <!--<strong class="text-light" style="font-size:8rem;">|</strong>-->
+            <!--<strong class="text-light" style="font-size:15rem;">PLAY</strong>-->
+            
+          
+        </header>
+        <div class="hub center">
+          <div class="jello-horizontal mb-5">
+              <div class="text-white d-inline-block">H</div>
+                <div class="d-inline-block">oDo</div>
+              <div class="text-white d-inline-block">O</div>
+          </div>
+          <a class="text-decoration-none " href="{% url 'movies:main' %}"><i class=" heartbeat text-center d-block text-white far fa-play-circle" style="font-size:4rem;"></i></a>
+        </div>
+        
+        
+      <div class="bcfont">
+          <div class="left_name text-center text-white">
+            <div class="c_t">Front-end</div>
+            <div class="c_sub">InSik</div>
+          </div>
+          <div class="left2_name text-center text-white">
+            <div class="c_t">Mascot</div>
+            <div class="c_sub">Hodoo</div>
+          </div>
+          <div class="left3_name text-center text-white">
+            <div class="c_t">Back-end</div>
+            <div class="c_sub">HyunSang</div>
+          </div>
+          <div class="left4_name text-center text-white">
+            <div class="c_t">Special-Guest</div>
+            <div class="c_sub">EduChang</div>
+          </div>
+      </div>
+      
+      
+      
+      <div class="bcfont">
+        <div class="bt_center_title text-center text-white">
+          <div>MOVIE CENTER</div>
+        </div>
+        
+        
+        <div class="bt_center_sub text-center text-white">
+          <div  class="t_t">
+          <div>We drunked. It is ok. It can be bad but plz remember just one thing 'Hodoo'.</div>
+          <div>I know the WebApp might be bad but we code so hard. Sincerely, You guys...Thanks</div>
+          </div>
+          <div class="t2_t">
+            술 한잔 마셨습니다. 프로젝트가 잘 안되도 좋습니다. 하지만 호두무비 하나만 기억해 주세요 진심을 다해 전합니다. 페이지가 별로 일수도 있습니다.
+          밤낮으로 고민하고 코딩했습니다. 최선을 다하고 열심히 했습니다. 저의 진심이 느껴지길 바랍니다. 고맙습니다.</div> 
+        </div>
+        
+      </div>
+      
+      
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    </body>
+</html>
+

@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block bb %}
+    <div class="dohyeon" style="margin-top:100px;">
+
+        <div class="container" >
+                {% for k,v in items.items %}
+                
+                    <!--<div style="font-size:1.8vw"><i class="fas fa-film"></i> {{k}}</div>-->
+                    <h3><i class="fas fa-film"></i> {{k}}</h3>
+            <div class="row">
+                    {% for title,src in v.items %}
+                        <div class="col-12 col-sm-6 col-lg-4 mb-5">
+                            
+                                <a href="https://movie.naver.com{{src.1}}">
+                                <img style="width:100%;" src="{{src.0}}">
+                                </a>
+                                {% if src.2 == '전체' %}
+                                    <div class="badge badge-pill badge-success align-middle" style="font-size:0.8vw;">
+                                        all
+                                    </div>
+                                {% elif src.2 == '12세' %}
+                                    <div class="badge badge-pill badge-primary align-middle" style="font-size:0.8vw;">
+                                        12
+                                    </div>
+                                {% elif src.2 == '15세' %}
+                                    <div class="badge badge-pill badge-warning align-middle" style="font-size:0.8vw;">
+                                        15
+                                    </div>
+                                {% elif src.2 == '청소년' %}
+                                    <div class="badge badge-pill badge-danger align-middle" style="font-size:0.8vw;">
+                                        19
+                                    </div>
+                                {% endif%}
+                                
+                                <span class="align-middle" style="font-size:1vw;">{{title}}</span>
+                        </div>
+                    {% endfor %}
+            </div>
+            <hr>
+                {% endfor %}
+        </div>
+        <div class="row d-flex justify-content-center">
+          <nav aria-label="Page navigation example">
+            <form class="pagination justify-content-center">
+              <li class="page-item"><input type="submit" name="day" class="page-link" value={{days.0}}></li>
+              <li class="page-item"><input type="submit" name="day" class="page-link" value={{days.1}}></li>
+              <li class="page-item"><input type="submit" name="day" class="page-link" value={{days.2}}></li>
+            </form>
+          </nav>
+        </div>
+        
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+{% endblock %}
+
+
+
+
+
+
+

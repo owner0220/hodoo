@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block bb %}
+<h1>유저 리스트 페이지</h1>
+   {% for person in users %}
+       <h4>{{person.username}}</h4>
+       <h4>{{person.id}}</h4>
+       <a href="{% url 'accounts:delete' person.id %}">X</a>
+   {% endfor %}
+{% endblock %}

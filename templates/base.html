@@ -1,65 +1,282 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>HoDoO</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-</head>
-<body>
-
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic|Material+Icons">
+    <link rel="stylesheet" href="https://unpkg.com/vue-material@beta/dist/vue-material.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/vue-material@beta/dist/theme/default.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="bower_components/css-star-rating/dist/css/star-rating.css">
+    <link href="https://fonts.googleapis.com/css?family=Barlow+Condensed|Do+Hyeon|Gothic+A1" rel="stylesheet">
+    <style type="text/css">
+    .tnav{
+      -webkit-transition: all 0.6s ease-out;
+      -moz-transition: all 0.6s ease-out;
+      -o-transition: all 0.6s ease-out;
+      -ms-transition: all 0.6s ease-out;
+      transition: all 0.6s ease-out;
+      background: rgba(4, 4, 4,0.3);
+      
+    }
     
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="{% url 'movies:list' %}">
-          <i class="fas fa-file-video"></i>
-        <img src="/docs/4.3/assets/brand/bootstrap-solid.svg" width="30" height="30" alt=""></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      {% if user.is_authenticated %}
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'accounts:logout' %}">로그아웃 <span class="sr-only">(current)</span></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'movies:create' %}">영화 추가 <span class="sr-only">(current)</span></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'accounts:detail' %}">나의정보 보기</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">채팅 <span class="sr-only">(current)</span></a>
-              </li>
-            </ul>
-            
-        {% else %}
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'accounts:login' %}">로그인 <span class="sr-only">(current)</span></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'accounts:create' %}">회원가입</a>
-              </li>
-            </ul>
-        {% endif %}
+    .tnav.scrolled {
+    background: rgb(68, 68, 68); /* IE */
+    background: rgba(0, 0, 0, 0.78); /* NON-IE */
+    }
+    
+    .text_b_w{
+      -webkit-transition: all 0.6s ease-out;
+      -moz-transition: all 0.6s ease-out;
+      -o-transition: all 0.6s ease-out;
+      -ms-transition: all 0.6s ease-out;
+      transition: all 0.6s ease-out;
+      color:black;
+      /*font-weight:bolder;*/
+    }
+    
+    .text_b_w.scrolled{
+      color:white;
+    }
+    
+    
+    .barlow{
+      font-family: 'Barlow Condensed', sans-serif;
+      
+    }
+    .dohyeon{
+      
+      font-family: 'Do Hyeon', sans-serif;
+    }
+    .gothic{
+     font-family: 'Gothic A1', sans-serif; 
+    }
+    
+    
+      .rating {
+          float:left;
+      }
+      
+      /* :not(:checked) is a filter, so that browsers that don’t support :checked don’t 
+         follow these rules. Every browser that supports :checked also supports :not(), so
+         it doesn’t make the test unnecessarily selective */
+      .rating:not(:checked) > input {
+              position: absolute;
+              /* top: -9999px; */
+              clip: rect(0, 0, 0, 0);
+              height: 0;
+              width: 0;
+              overflow: hidden;
+              opacity: 0;
+      }
+      
+      .rating:not(:checked) > label {
+          float:right;
+          width:1em;
+          padding:0 .1em;
+          overflow:hidden;
+          white-space:nowrap;
+          cursor:pointer;
+          font-size:200%;
+          line-height:1.2;
+          color:#ddd;
+          text-shadow:1px 1px #bbb, 2px 2px #666, .1em .1em .2em rgba(0,0,0,.5);
+      }
+      
+      .rating:not(:checked) > label:before {
+          content: '★ ';
+      }
+      
+      .rating > input:checked ~ label {
+          color: #f70;
+          text-shadow:1px 1px #c60, 2px 2px #940, .1em .1em .2em rgba(0,0,0,.5);
+      }
+      
+      .rating:not(:checked) > label:hover,
+      .rating:not(:checked) > label:hover ~ label {
+          color: gold;
+          text-shadow:1px 1px goldenrod, 2px 2px #B57340, .1em .1em .2em rgba(0,0,0,.5);
+      }
+      
+      .rating > input:checked + label:hover,
+      .rating > input:checked + label:hover ~ label,
+      .rating > input:checked ~ label:hover,
+      .rating > input:checked ~ label:hover ~ label,
+      .rating > label:hover ~ input:checked ~ label {
+          color: #ea0;
+          text-shadow:1px 1px goldenrod, 2px 2px #B57340, .1em .1em .2em rgba(0,0,0,.5);
+      }
+      
+      .rating > label:active {
+          position:relative;
+          top:2px;
+          left:2px;
+      }
+      
+      .page-footer{
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: rgba(68,68,68,0.3);
+        color:black;
 
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+      }
+      
+
+    </style>
+    
+</head>
+
+  <body>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-primary gothic tnav">
+      <!--<a class='navbar-brand' href='{% url 'movies:list' %}'><md-button class="btn"> <img class="m-0 p-0" src="{% static 'movies/white_logo.png' %}"></img></md-button></a>-->
+      <a class='navbar-brand' href='{% url 'movies:main' %}'><md-button class="btn"> 
+      
+        <img src="{% static 'movies/3.svg' %}" alt="">
+      
+      </md-button></a>
+
+      <div class='dohyeon collapse navbar-collapse' id='navbarNavAltMarkup'>
+        <div class='navbar-nav ml-auto d-flex align-items-center text_b_w'>
+          {% if user.is_authenticated %}
+          <!--<a  class='nav-item nav-link' href="{% url 'movies:create' %}"><md-button class="btn btn-dark">영화 추가</md-button></a>-->
+          <a  class='nav-item nav-link' href="{% url 'movies:main' %}"><md-button class="btn text_b_w">검색</md-button></a>
+          <a  class='nav-item nav-link' href="{% url 'movies:list' %}"><md-button class="btn text_b_w">개봉 영화</md-button></a>
+          <a  class='nav-item nav-link' href="{% url 'movies:preticket' %}"><md-button class="btn text_b_w">개봉 예정 영화</md-button></a>
+          <a  class='nav-item nav-link' href="{% url 'movies:watched_post' %}"><md-button class="btn text_b_w">이미 시청한 영화 목록</md-button></a>
+          <a  class='nav-item nav-link' href="{% url 'movies:like_post' %}"><md-button class="btn text_b_w">나중에 볼 영화 목록</md-button></a>
+          <span style="font-size:1.5rem;"> | </span>
+          <a  class='nav-item nav-link' href="{% url 'accounts:detail' %}"><md-button class="btn text_b_w"><i class="fas fa-user">  {{user}}</i></md-button></a>
+          <a  class='nav-item nav-link' href="{% url 'accounts:logout' %}"><md-button class="btn text_b_w">로그 아웃</md-button></a>
+          {% else %}
+          <a  class='nav-item nav-link' href="{% url 'accounts:create' %}"><md-button class="btn text_b_w">회원가입</md-button></a>
+          <a  class='nav-item nav-link' href="{% url 'accounts:logout' %}"><md-button class="btn text_b_w">로그인</md-button></a>
+          {% endif %}
+        </div>
       </div>
+      
+    
     </nav>
+    
+
+<style lang="scss" scoped>
+  small {
+    display: block;
+  }
+</style>
+
+<script>
+  export default {
+    name: 'RegularButtons'
+  }
+</script>
+    
+    
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/vue-material@beta"></script>
+    <script>
+      Vue.use(VueMaterial.default)
+
+      new Vue({
+        el: '#app'
+      })
+    </script>
+    
+    
+    
     
     {% block bb %}
     {% endblock %}
     
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-</body>
+    
+    
+    <!-- Footer -->
+<footer class="page-footer font-small gray pt-4">
 
+  <!-- Footer Links -->
+  <div class="container-fluid text-center text-md-left">
+
+    <!-- Grid row -->
+    <div class="row">
+
+      <!-- Grid column -->
+      <div class="col-md-6 mt-md-0 mt-3">
+
+        <!-- Content -->
+        <h5 class="text-uppercase font-weight-bold">질문이 있으신가요? 고객 센터에 문의하세요.</h5>
+        <p>HoDoo Korea</p>
+
+        <p>주식회사 호두 코리아 통신판매업신고번호: 제20**-서울중구-14**호</p>
+
+      </div>
+      <!-- Grid column -->
+
+      <hr class="clearfix w-100 d-md-none pb-3">
+
+      <!-- Grid column -->
+      <div class="col-md-3 mb-md-0 mb-3">
+
+        <!-- Links -->
+        <h6 class="text-uppercase">고객 센터 <a href="http://pf.kakao.com/_xkxczAT"><i class="fas fa-headset"></i></a></h6>
+        <h6 class="text-uppercase">쿠키 설정</h6>
+        <h6 class="text-uppercase">계정</h6>
+        <h6 class="text-uppercase">회사정보</h6>
+
+        <!--<ul class="list-unstyled">-->
+        <!--  <li>-->
+        <!--    <a href="#!">Link 1</a>-->
+        <!--  </li>-->
+        <!--  <li>-->
+        <!--    <a href="#!">Link 2</a>-->
+        <!--  </li>-->
+        <!--  <li>-->
+        <!--    <a href="#!">Link 3</a>-->
+        <!--  </li>-->
+        <!--  <li>-->
+        <!--    <a href="#!">Link 4</a>-->
+        <!--  </li>-->
+        <!--</ul>-->
+
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-3 mb-md-0 mb-3">
+
+        <!-- Links -->
+        <h6 class="text-uppercase">미디어 센터</h6>
+        <h6 class="text-uppercase">이용 약관</h6>
+        <h6 class="text-uppercase">문의하기 <a href="http://pf.kakao.com/_xkxczAT/chat"><i class="far fa-comment-dots"></i></a></h6>
+
+        
+
+      </div>
+      <!-- Grid column -->
+
+    </div>
+    <!-- Grid row -->
+
+  </div>
+  <!-- Footer Links -->
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2019 Copyright:
+    <h6 class="text-uppercase">i love HoDoo</h6>
+  </div>
+  <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
+  </body>
 </html>

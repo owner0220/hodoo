@@ -9,6 +9,19 @@
   - Bootstrap 기본 UI 세팅
   - 백엔드, 모델 구성, API활용 DB 세팅&관리, RESTful API
 
+
+
+#### Live Demo : [클릭](http://movielists-dev4.ap-northeast-2.elasticbeanstalk.com/)
+
+URL http://movielists-dev4.ap-northeast-2.elasticbeanstalk.com/  
+
+```html
+테스트 계정   /    PW 
+test        /   qqqq123!
+```
+
+
+
 ---
 
 ### 프로젝트 목적
@@ -32,6 +45,8 @@ URL https://docs.google.com/presentation/d/1qQ0z4cxDtFp-fiubJw3VYT-mG6mh5_AgcudO
 - 오픈소스나 외부 라이브러리를 사용하다 보니 영어로 된 레퍼런스와 용어가 의미하는 정확한 뜻을 모르거나 잘못 해석해서  삽질을 하는 경우들도 있었지만, 매개변수와 반환값을 잘 알지 못해서 발생하는 문제들로 에러가 발생하는 경우들이 있어서 그러한 부분들을 좀 더 유의깊게 봐야겠습니다.
 - 처음엔 모델 구성을 좀 쉽게 생각했는데 관계 구성하는 부분들이 생각보다 복잡해서 효과적인 관계 설정을 고민되어 지금은 정보처리기사의 정규화 내용을 다시 보며 학습하고 있습니다.
 
+
+
 ---
 
 ### 상세설명
@@ -51,20 +66,13 @@ Django 2.1.8
 
 
 
-#### Live Demo : [클릭](http://movielists-dev4.ap-northeast-2.elasticbeanstalk.com/)
-
-URL http://movielists-dev4.ap-northeast-2.elasticbeanstalk.com/  
-
-```html
-테스트 계정   /    PW 
-test        /   qqqq123!
-```
-
 
 
 ##### Home(인트로페이지)
 
 `path`   /
+
+![hodoo-home](./hodoo-home.png)
 
 
 
@@ -76,7 +84,7 @@ test        /   qqqq123!
 
 `path`   /admin
 
-
+![hodoo-home](./hodoo-admin.png)
 
 
 
@@ -90,11 +98,17 @@ test        /   qqqq123!
 
 현재 가입되어 있는 사용자 계정들을 보여줍니다.
 
+실질적으로 관리자 페이지에서 계정 관리를 하기 때문에 뷰가 필요 없었습니다.
+
+- **사용자 로그 인     :** /login
+
+![hodoo-home](./hodoo-login.png)
+
+- 사용자 로그 아웃 : /logout
+
 - 사용자 계정 생성 : /create
 
 - 사용자 계정 수정 : /update
-- 사용자 로그 아웃 : /logout
-- 사용자 로그 인     : /login
 - 사용자 계정 삭제 : /\<int:id>/delete
 - 사용자 상세 정보 : /detail
 
@@ -108,23 +122,39 @@ test        /   qqqq123!
 
 영화 
 
-- 영화 정보 목록 : /list
-- 영화 디테일 : /\<int:id>
-- 개봉예정 영화 : /preticket
+- **영화 정보 목록 :** /list
+
+![hodoo-home](./hodoo-movie_list.png)
+
+- **영화 디테일 :** /\<int:id>
+
+![hodoo-home](./hodoo-movie_detail.png)
+
+- **개봉예정 영화 :** /preticket
+
+![hodoo-home](./hodoo-preticket.png)
 
 
 
 `@로그인된 유저만 접근 허용`
 
-- 영화 정보 검색 : /search
-- 보고 싶은 영화 추가 : /\<int:id>/like
-- 이미 본 영화 추가 : /\<int:id>/whatched
-- 보고 싶은 영화 목록 : /like_post
-- 이미 본 영화 목록 : /watched_post
+- **영화 정보 검색 :** /search
+
+![hodoo-home](./hodoo-search.png)
+
+- **보고 싶은 영화 목록 :** /like_post
+
+![hodoo-home](./hodoo-later.png)
+
+- **이미 본 영화 목록 :** /watched_post
+
+![hodoo-home](./hodoo-seen.png)
 
 - 영화 댓글 추가 : /\<int:id>/scores/new
 - 영화 댓글 삭제 : /\<int:id>/scores/\<int:score_new_id>/delete
 - 영화 댓글 수정 : /\<int:id>/scores/\<int:score_id>/update
+- 보고 싶은 영화 추가 : /\<int:id>/like
+- 이미 본 영화 추가 : /\<int:id>/whatched
 
 
 
@@ -146,7 +176,11 @@ test        /   qqqq123!
 
 `path`   /game
 
-건물 쌓기 게임
+건물 쌓기 게임(오픈소스)_일부 구성 변경, 장고와 호환성 매칭
+
+> 참조 URL 유실 찾는 즉시 업데이트 예정
+
+![hodoo-home](./hodoo-game.png)
 
 
 
@@ -163,13 +197,21 @@ RESTful API 제공
 
 `@일반적인 유저 접근`
 
-
+![hodoo-home](./hodoo-user-api.png)
 
 `@admin 유저 접근`
 
+![hodoo-home](./hodoo-admin-api.png)
 
 
 
+##### Kakao 플러스 친구 연결
+
+![hodoo-home](./hodoo-kakao-plus.png)
+
+
+
+---
 
 ### 사용 외부 라이브러리
 

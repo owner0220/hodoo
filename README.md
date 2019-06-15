@@ -24,22 +24,22 @@ test        /   qqqq123!
 
 ---
 
-# 프로젝트 목적
+### 프로젝트 목적
 
 - Rest API, CRUD 구현, 학습내용 복기
 - 오픈소스, API 활용 (레퍼런스 보는 연습)
 
-## 프로젝트 개요
+#### 프로젝트 개요
 
 - 영화 정보 조회 서비스 WATCHA 구현, 영화 평점과 댓글을 등록할 수 있고, 시청 영화, 보고 싶은 영화로 개인 영화 기호를 저장 관리 할 수 있습니다.
 
-### 프로젝트 발표 자료
+#### 프로젝트 발표 자료
 
 #### **PPT :**  [클릭](https://docs.google.com/presentation/d/1qQ0z4cxDtFp-fiubJw3VYT-mG6mh5_AgcudOraOvoBA/edit?usp=sharing)
 
 URL https://docs.google.com/presentation/d/1qQ0z4cxDtFp-fiubJw3VYT-mG6mh5_AgcudOraOvoBA/edit?usp=sharing
 
-### 느낀점
+# 느낀점
 
 - ##### 프로젝트의 의의와 목적 확실히 하기
 
@@ -56,7 +56,7 @@ URL https://docs.google.com/presentation/d/1qQ0z4cxDtFp-fiubJw3VYT-mG6mh5_AgcudO
   - 가져다 활용은 했지만 내부 구성을 몰라서 발생하는 문제 (라이브러리 이름 비슷, 인코딩, 버전 문제 등)
   - 매개변수와 반환값 타입 등을 잘 알지 못해서 발생하는 문제들
 
-**▶▶▶▶ ※ 비교적 유명한 오픈소스 활용하기(그래야 다른 참조 자료들이 많아서 문제 해결 가능성이 높다.) **
+**▶▶▶▶ ※ 비교적 유명한 오픈소스 활용하기(그래야 다른 참조 자료들이 많아서 문제 해결 가능성이 높다.)** 
 
 ---
 
@@ -64,7 +64,7 @@ URL https://docs.google.com/presentation/d/1qQ0z4cxDtFp-fiubJw3VYT-mG6mh5_AgcudO
 
   - 처음엔 모델 구성을 좀 쉽게 생각했는데 관계 구성하는 부분들이 생각보다 복잡해서 효과적인 관계 설정을 고민, 지금은 정보처리기사의 정규화 내용과 매칭해 학습 중입니다.
 
-**▶▶▶▶ ※ 코딩은 어떻게 구성해도 기능은 구현 되지만 deploy 했을 때 퍼포먼스가 좀 달라서 알고리즘을 학습해야 겠다는 생각이 들었습니다. **
+**▶▶▶▶ ※ 코딩은 어떻게 구성해도 기능은 구현 되지만 deploy 했을 때 퍼포먼스가 좀 달라서 알고리즘을 학습해야 겠다는 생각이 들었습니다.** 
 
 ---
 
@@ -91,7 +91,7 @@ URL https://docs.google.com/presentation/d/1qQ0z4cxDtFp-fiubJw3VYT-mG6mh5_AgcudO
     - 수정 목표 : 개봉 영화 정보가 있는 타겟 사이트를 찾자
       - 네이버 개봉 영화 정보를 찾아서 정보를 가져오고 재구성해 웹에 구성
 
-**▶▶▶▶ ※ 지금 바로 달성 할 수 있는(최소한의 노력으로 목적을 달성할 수 있는) 단계부터 달성하고 기능을 업그레이드 하자 **
+**▶▶▶▶ ※ 지금 바로 달성 할 수 있는(최소한의 노력으로 목적을 달성할 수 있는) 단계부터 달성하고 기능을 업그레이드 하자** 
 
 ---
 

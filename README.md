@@ -11,9 +11,13 @@
 
 
 
-#### Live Demo : [클릭](http://movielists-dev4.ap-northeast-2.elasticbeanstalk.com/)
+#### Live Demo : [AWS서버](http://movielists-dev4.ap-northeast-2.elasticbeanstalk.com/)  \ [Heroku서버](<https://uphodoo.herokuapp.com/>)
 
-URL http://movielists-dev4.ap-northeast-2.elasticbeanstalk.com/  
+URL1 http://movielists-dev4.ap-northeast-2.elasticbeanstalk.com/  
+
+URL2 https://uphodoo.herokuapp.com/
+
+
 
 ```html
 테스트 계정   /    PW 
